@@ -10,7 +10,7 @@ function App() {
             header={{height: 80}}
             navbar={{width: '15vw', breakpoint: 'sm'}}
             padding="md"
-            w={'100vh'}
+            w={0}
         >
             <AppShell.Header>
                 <Group h="100%" px={30}>

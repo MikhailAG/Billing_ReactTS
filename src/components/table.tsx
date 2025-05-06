@@ -21,13 +21,14 @@ interface TableProps {
     headers: string[];
     count: number;
     pages: number[];
+    onClick?: () => void;
 }
 
-const MyTable = ({name, headers, dataKeys, data, count, pages}: TableProps) => {
+const MyTable = ({name, headers, dataKeys, data, count, pages, onClick}: TableProps) => {
     const rows = data.map((element: RowData) => (
         <Table.Tr key={element.id as number} fz={15}>
             {dataKeys.map((h: string) => (
-                <Table.Td>{String(element[h])}</Table.Td>
+                <Table.Td onClick={onClick} style={{cursor: 'pointer'}}>{String(element[h])}</Table.Td>
             ))}
         </Table.Tr>
     ));
@@ -47,7 +48,7 @@ const MyTable = ({name, headers, dataKeys, data, count, pages}: TableProps) => {
                 </Flex>
             </Card.Section>
             <Card.Section withBorder>
-                <Table w="100%" ta="center">
+                <Table w="100%" ta="center" highlightOnHover>
                     <Table.Thead>
                         <Table.Tr>{headers.map(renderHeaderCell)}</Table.Tr>
                     </Table.Thead>
