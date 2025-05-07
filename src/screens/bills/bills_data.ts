@@ -2,14 +2,6 @@ import type {Bill} from "../../types.ts";
 
 const bills: Bill[] = [
     {
-        id: 401,
-        subscriber: 'Антон Михайлов',
-        services: '20 Гб 500 Мин',
-        total: 550,
-        status: 'Не оплачен',
-        date_at: '-'
-    },
-    {
         id: 400,
         subscriber: 'Владимир Дубов',
         services: '15 Гб 100 Мин',
@@ -89,6 +81,19 @@ const bills: Bill[] = [
         status: 'Оплачен',
         date_at: '03.05.2025'
     },
+    {
+        id: 390,
+        subscriber: 'Антон Михайлов',
+        services: '20 Гб 500 Мин',
+        total: 550,
+        status: 'Не оплачен',
+        date_at: '-'
+    },
 ];
+const data = {
+    result: bills,
+    total: 400,
+    page: 40
+}
 
-export {bills}
+export {data}

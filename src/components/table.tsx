@@ -13,20 +13,19 @@ const renderHeaderCell = (label: string) => (
 );
 
 type RowData = { [key: string]: unknown };
+type dataColumns = { result: RowData[], total: number, page: number };
 
 interface TableProps {
     name: string;
-    data: RowData[];
+    data: dataColumns;
     dataKeys: string[];
     headers: string[];
-    count: number;
-    pages: number[];
     onEdit?: () => void;
     onCreate?: () => void;
 }
 
-const MyTable = ({name, headers, dataKeys, data, count, pages, onEdit, onCreate}: TableProps) => {
-    const rows = data.map((element: RowData) => (
+const MyTable = ({name, headers, dataKeys, data, onEdit, onCreate}: TableProps) => {
+    const rows = data.result.map((element: RowData) => (
         <Table.Tr key={element.id as number} fz={15}>
             {dataKeys.map((h: string) => (
                 <Table.Td onClick={onEdit} style={{cursor: 'pointer'}}>{String(element[h])}</Table.Td>
@@ -40,7 +39,7 @@ const MyTable = ({name, headers, dataKeys, data, count, pages, onEdit, onCreate}
                 <Flex justify="space-between">
                     <Flex gap={20} align="center">
                         <Text fw="bold" fz={22}>
-                            {name}, всего: {count}
+                            {name}, всего: {data.total}
                         </Text>
                     </Flex>
                     <Button variant={'outline'} color={'violet'} fz={16}
@@ -57,19 +56,24 @@ const MyTable = ({name, headers, dataKeys, data, count, pages, onEdit, onCreate}
             </Card.Section>
             <Card.Section>
                 <Flex gap={15} p={15} align="flex-end" justify="flex-end">
-                    {pages.map((num: number, idx: number) => (
-                        <Card
-                            key={num}
-                            p={10}
-                            radius={15}
-                            withBorder
-                            style={idx === 0 ? {border: "2px solid #b2bbed", cursor: 'pointer'} : {cursor: 'pointer'}}
-                        >
-                            {num}
-                        </Card>
-                    ))}
-                    {pages.length > 1 && <Text fz={25}>...</Text>}
-                    <Card px={15} py={10} radius={15} withBorder>
+                    {data.page > 1 && ([data.page, data.page - 1, data.page - 2].map((num: number, idx: number) => (
+                        num > 1 && (
+                            <Card
+                                key={num}
+                                p={10}
+                                radius={15}
+                                withBorder
+                                style={idx === 0 ? {
+                                    border: "2px solid #b2bbed",
+                                    cursor: 'pointer'
+                                } : {cursor: 'pointer'}}
+                            >
+                                {num}
+                            </Card>
+                        )
+                    )))}
+                    {data.page > 3 && <Text fz={25}>...</Text>}
+                    <Card p={10} radius={15} withBorder style={{cursor: 'pointer'}}>
                         1
                     </Card>
                 </Flex>

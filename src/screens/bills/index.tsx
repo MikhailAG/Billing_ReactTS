@@ -1,5 +1,5 @@
 import MyTable from "../../components/table.tsx";
-import {bills} from "./bills_data.ts";
+import {data} from "./bills_data.ts";
 
 const headers = [
     "ID Счета",
@@ -20,8 +20,7 @@ const dataKeys = [
 
 const Index = () => {
     return (
-        <MyTable name='Счета' headers={headers} dataKeys={dataKeys} count={401} data={bills}
-                 pages={[40, 39, 38, 37, 36]}/>
+        <MyTable name='Счета' headers={headers} dataKeys={dataKeys} data={data}/>
     );
 };
 

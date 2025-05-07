@@ -26,5 +26,10 @@ const requests: Request[] = [
         comment: '20 Гб 100 Мин',
     },
 ]
+const data = {
+    result: requests,
+    total: 3,
+    page: 1
+}
 
-export {requests}
+export {data}

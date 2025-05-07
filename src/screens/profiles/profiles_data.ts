@@ -92,6 +92,10 @@ const profiles: Profile[] = [
         contact_information: '+7 (926) 016-80-19'
     }
 ];
+const data = {
+    result: profiles,
+    total: 560,
+    page: 56
+}
 
-
-export {profiles}
+export {data}

@@ -1,5 +1,5 @@
 import MyTable from "../../components/table.tsx";
-import {profiles} from "./profiles_data.ts";
+import {data} from "./profiles_data.ts";
 import ProfileEdit from "./edit.tsx";
 import {Modal} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
@@ -32,8 +32,7 @@ const Profiles = () => {
             <Modal size={'lg'} opened={opened} onClose={close} title="Редактировать профиль">
                 <ProfileEdit/>
             </Modal>
-            <MyTable name='Профили абонентов' headers={headers} dataKeys={dataKeys} count={565} data={profiles}
-                     pages={[56, 55, 54, 53, 52]} onEdit={open}/>
+            <MyTable name='Профили абонентов' headers={headers} dataKeys={dataKeys} data={data} onEdit={open}/>
         </Container>
     );
 };

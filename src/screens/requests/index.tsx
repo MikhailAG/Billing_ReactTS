@@ -1,5 +1,5 @@
 import MyTable from "../../components/table.tsx";
-import {requests} from "./requests_data";
+import {data} from "./requests_data";
 import {Container, Modal} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import NewRequest from "./create";
@@ -29,8 +29,7 @@ const Profiles = () => {
             <Modal size={'lg'} opened={opened} onClose={close} title="Новая заявка">
                 <NewRequest/>
             </Modal>
-            <MyTable name='Заявки' headers={headers} dataKeys={dataKeys} count={3} data={requests}
-                     pages={[]} onCreate={open}/>
+            <MyTable name='Заявки' headers={headers} dataKeys={dataKeys} data={data} onCreate={open}/>
         </Container>
     );
 };
