@@ -2,11 +2,15 @@ import {IconFileInvoice, IconMessage2Question, IconReport, IconUser} from "@tabl
 import {NavLink, Stack} from "@mantine/core";
 import {useNavigate, useLocation} from 'react-router-dom';
 
+const iconProps = {
+    size: 25,
+    stroke: 1.5,
+}
 const navItems = [
-    {to: '/bills', label: 'Счета', icon: <IconFileInvoice size={25} stroke={1.5}/>},
-    {to: '/profiles', label: 'Профили абонентов', icon: <IconUser size={25} stroke={1.5}/>},
-    {to: '/reports', label: 'Отчеты', icon: <IconReport size={25} stroke={1.5}/>},
-    {to: '/requests', label: 'Заявки', icon: <IconMessage2Question size={25} stroke={1.5}/>}
+    {to: '/bills', label: 'Счета', icon: <IconFileInvoice {...iconProps} />},
+    {to: '/profiles', label: 'Профили абонентов', icon: <IconUser {...iconProps} />},
+    {to: '/reports', label: 'Отчеты', icon: <IconReport {...iconProps} />},
+    {to: '/requests', label: 'Заявки', icon: <IconMessage2Question {...iconProps} />}
 ];
 
 const Navigation = () => {
