@@ -15,5 +15,13 @@ type Profile = {
     contact_information: string;
     status: string;
 }
+type Request = {
+    id: number;
+    full_name: string;
+    status: string;
+    date_at: string;
+    type: string;
+    comment: string;
+}
 
-export type {Bill, Profile}
+export type {Bill, Profile, Request}

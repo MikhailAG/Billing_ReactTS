@@ -1,4 +1,4 @@
-import {ActionIcon, Card, Flex, Table, Text} from "@mantine/core";
+import {ActionIcon, Button, Card, Flex, Table, Text} from "@mantine/core";
 import {IconFilter, IconPlus} from "@tabler/icons-react";
 
 const renderHeaderCell = (label: string) => (
@@ -21,20 +21,21 @@ interface TableProps {
     headers: string[];
     count: number;
     pages: number[];
-    onClick?: () => void;
+    onEdit?: () => void;
+    onCreate?: () => void;
 }
 
-const MyTable = ({name, headers, dataKeys, data, count, pages, onClick}: TableProps) => {
+const MyTable = ({name, headers, dataKeys, data, count, pages, onEdit, onCreate}: TableProps) => {
     const rows = data.map((element: RowData) => (
         <Table.Tr key={element.id as number} fz={15}>
             {dataKeys.map((h: string) => (
-                <Table.Td onClick={onClick} style={{cursor: 'pointer'}}>{String(element[h])}</Table.Td>
+                <Table.Td onClick={onEdit} style={{cursor: 'pointer'}}>{String(element[h])}</Table.Td>
             ))}
         </Table.Tr>
     ));
 
     return (
-        <Card withBorder radius="lg" shadow="md" h="fit-content" w="80vw">
+        <Card withBorder radius="lg" shadow="md" h="fit-content" w="82.5vw">
             <Card.Section p={30} withBorder>
                 <Flex justify="space-between">
                     <Flex gap={20} align="center">
@@ -42,9 +43,8 @@ const MyTable = ({name, headers, dataKeys, data, count, pages, onClick}: TablePr
                             {name}, всего: {count}
                         </Text>
                     </Flex>
-                    <ActionIcon variant="subtle" size={35}>
-                        <IconPlus size={70}/>
-                    </ActionIcon>
+                    <Button variant={'outline'} color={'violet'} fz={16}
+                            leftSection={<IconPlus size={25}/>} onClick={onCreate}>Создать</Button>
                 </Flex>
             </Card.Section>
             <Card.Section withBorder>
@@ -68,7 +68,7 @@ const MyTable = ({name, headers, dataKeys, data, count, pages, onClick}: TablePr
                             {num}
                         </Card>
                     ))}
-                    <Text fz={25}>...</Text>
+                    {pages.length > 1 && <Text fz={25}>...</Text>}
                     <Card px={15} py={10} radius={15} withBorder>
                         1
                     </Card>

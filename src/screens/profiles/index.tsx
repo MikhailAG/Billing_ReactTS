@@ -33,7 +33,7 @@ const Profiles = () => {
                 <ProfileEdit/>
             </Modal>
             <MyTable name='Профили абонентов' headers={headers} dataKeys={dataKeys} count={565} data={profiles}
-                     pages={[56, 55, 54, 53, 52]} onClick={open}/>
+                     pages={[56, 55, 54, 53, 52]} onEdit={open}/>
         </Container>
     );
 };
