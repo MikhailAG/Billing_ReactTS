@@ -15,13 +15,14 @@ type Profile = {
     contact_information: string;
     status: string;
 }
-type Request = {
+type Service = {
     id: number;
-    full_name: string;
-    status: string;
-    date_at: string;
-    type: string;
-    comment: string;
+    minutes: number,
+    gigabytes: number,
+    cost: number,
+    name: string,
+    status: string,
+    date_at: string
 }
 
-export type {Bill, Profile, Request}
+export type {Bill, Profile, Service}

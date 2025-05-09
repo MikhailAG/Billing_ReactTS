@@ -3,7 +3,7 @@ import Navigation from "./components/navigation.tsx";
 import {Route, Routes} from "react-router-dom";
 import Bills from "./screens/bills/index.tsx";
 import Profiles from "./screens/profiles/index.tsx";
-import Requests from "./screens/requests";
+import Services from "./screens/services";
 
 function App() {
     return (
@@ -21,8 +21,8 @@ function App() {
                             <Avatar color="cyan" radius="xl">МТ</Avatar>
                             <Flex direction={'column'}>
                                 <Text fz={16}>Михаил Терешин</Text>
-                                {/*<Text fz={14} c={'gray'}>администратор</Text>*/}
-                                <Text fz={14} c={'gray'}>сотрудник</Text>
+                                <Text fz={14} c={'gray'}>администратор</Text>
+                                {/*<Text fz={14} c={'gray'}>сотрудник</Text>*/}
                             </Flex>
                         </Flex>
                     </Card>
@@ -36,7 +36,7 @@ function App() {
                     <Route path="/bills" element={<Bills/>}/>
                     <Route path="/profiles" element={<Profiles/>}/>
                     <Route path="/reports" element={<div>Отчеты</div>}/>
-                    <Route path="/requests" element={<Requests/>}/>
+                    <Route path="/services" element={<Services/>}/>
                 </Routes>
             </AppShell.Main>
         </AppShell>

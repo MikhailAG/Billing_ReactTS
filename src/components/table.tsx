@@ -2,11 +2,11 @@ import {ActionIcon, Button, Card, Flex, Table, Text} from "@mantine/core";
 import {IconFilter, IconPlus} from "@tabler/icons-react";
 
 const renderHeaderCell = (label: string) => (
-    <Table.Th ta="center" fz={18} key={label}>
-        <Flex gap={10} align="center" justify="center">
+    <Table.Th fz={18} key={label}>
+        <Flex gap={10} align="center">
             {label}
-            <ActionIcon variant="subtle" size={20}>
-                <IconFilter size={20}/>
+            <ActionIcon variant="subtle" size={23}>
+                <IconFilter size={17}/>
             </ActionIcon>
         </Flex>
     </Table.Th>
@@ -18,21 +18,12 @@ type dataColumns = { result: RowData[], total: number, page: number };
 interface TableProps {
     name: string;
     data: dataColumns;
-    dataKeys: string[];
     headers: string[];
-    onEdit?: () => void;
+    onShow?: () => void;
     onCreate?: () => void;
 }
 
-const MyTable = ({name, headers, dataKeys, data, onEdit, onCreate}: TableProps) => {
-    const rows = data.result.map((element: RowData) => (
-        <Table.Tr key={element.id as number} fz={15}>
-            {dataKeys.map((h: string) => (
-                <Table.Td onClick={onEdit} style={{cursor: 'pointer'}}>{String(element[h])}</Table.Td>
-            ))}
-        </Table.Tr>
-    ));
-
+const MyTable = ({name, headers, data, onShow, onCreate}: TableProps) => {
     return (
         <Card withBorder radius="lg" shadow="md" h="fit-content" w="82.5vw">
             <Card.Section p={30} withBorder>
@@ -47,35 +38,51 @@ const MyTable = ({name, headers, dataKeys, data, onEdit, onCreate}: TableProps) 
                 </Flex>
             </Card.Section>
             <Card.Section withBorder>
-                <Table w="100%" ta="center" highlightOnHover>
+                <Table w="100%" highlightOnHover>
                     <Table.Thead>
                         <Table.Tr>{headers.map(renderHeaderCell)}</Table.Tr>
                     </Table.Thead>
-                    <Table.Tbody>{rows}</Table.Tbody>
+                    <Table.Tbody>
+                        {data.result.map((element: RowData) => (
+                            <Table.Tr key={element.id as number} fz={15}>
+                                {Object.keys(data.result[0]).map((key: string) => (
+                                    <Table.Td onClick={onShow} style={{cursor: 'pointer'}}>
+                                        {String(element[key])}
+                                    </Table.Td>
+                                ))}
+                            </Table.Tr>
+                        ))}
+                    </Table.Tbody>
                 </Table>
             </Card.Section>
             <Card.Section>
                 <Flex gap={15} p={15} align="flex-end" justify="flex-end">
                     {data.page > 1 && ([data.page, data.page - 1, data.page - 2].map((num: number, idx: number) => (
                         num > 1 && (
-                            <Card
+                            <Button
                                 key={num}
-                                p={10}
                                 radius={15}
-                                withBorder
-                                style={idx === 0 ? {
-                                    border: "2px solid #b2bbed",
-                                    cursor: 'pointer'
-                                } : {cursor: 'pointer'}}
+                                variant={idx === 0 ? 'filled' : 'outline'}
+                                color={'violet'}
+                                p={0}
+                                w={40}
+                                h={40}
                             >
                                 {num}
-                            </Card>
+                            </Button>
                         )
                     )))}
                     {data.page > 3 && <Text fz={25}>...</Text>}
-                    <Card p={10} radius={15} withBorder style={{cursor: 'pointer'}}>
+                    <Button
+                        radius={15}
+                        variant={data.page === 1 ? 'filled' : 'outline'}
+                        color={'violet'}
+                        p={0}
+                        w={40}
+                        h={40}
+                    >
                         1
-                    </Card>
+                    </Button>
                 </Flex>
             </Card.Section>
         </Card>
